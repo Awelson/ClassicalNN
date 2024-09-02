@@ -199,7 +199,7 @@ for midi, wav in zip(midis, wavs):
 
 ## Step 6 (tospec.py)
 
-Manually sort the newly generated wavs into folders based on their composers. The following code (copied from [the tutorial](https://github.com/jeffprosise/Deep-Learning/blob/master/Audio%20Classification%20(CNN).ipynb)) will generate the required spectograms
+Manually sort the newly generated wavs into folders based on their composers. The following code will generate the required spectograms
 
 ```python
 import numpy as np
