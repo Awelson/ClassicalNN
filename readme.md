@@ -157,7 +157,7 @@ Some of the midis are silent for up to 10 or so seconds before beginning. We add
 
 The following code performs this task
 
-> **Warning.** Create a folder called "wavs" before running this code. Also, this will take a **really** long time.
+> **Warning.** If you encounter an error, try creating a folder called "wavs" in the root directory. Also, this will take a **really** long time.
 
 ```python
 import os

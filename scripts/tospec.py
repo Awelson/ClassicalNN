@@ -26,8 +26,8 @@ def create_pngs_from_wavs(input_path, output_path):
         output_file = os.path.join(output_path, file.replace('.wav', '.png'))
         create_spectrogram(input_file, output_file)
 
-create_pngs_from_wavs('wavs/Schubert', 'spectrograms/Schubert')
-create_pngs_from_wavs('wavs/Liszt', 'spectrograms/Liszt')
-create_pngs_from_wavs('wavs/Bach', 'spectrograms/Bach')
-create_pngs_from_wavs('wavs/Chopin', 'spectrograms/Chopin')
-create_pngs_from_wavs('wavs/Scarlatti', 'spectrograms/Scarlatti')
+create_pngs_from_wavs('../wavs/Schubert', '../spectrograms/Schubert')
+create_pngs_from_wavs('../wavs/Liszt', '../spectrograms/Liszt')
+create_pngs_from_wavs('../wavs/Bach', '../spectrograms/Bach')
+create_pngs_from_wavs('../wavs/Chopin', '../spectrograms/Chopin')
+create_pngs_from_wavs('../wavs/Scarlatti', '../spectrograms/Scarlatti')

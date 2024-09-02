@@ -5,7 +5,7 @@ def duration(file_path) :
     midi = PrettyMIDI(file_path)
     return midi.get_end_time()
 
-df = pl.read_csv("mididata.csv")
+df = pl.read_csv("..\\mididata.csv")
 
 composer_counts = df.group_by("composers").agg(
     pl.col("file_paths").count().alias("counts")
@@ -24,4 +24,4 @@ result_df = (
     .group_by('composers').head(80)
 )
 
-result_df.write_csv('filtered.csv')
+result_df.write_csv('..\\filtered.csv')

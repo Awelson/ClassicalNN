@@ -1,7 +1,7 @@
 import os
 import polars as pl
 
-directory = "midis"
+directory = "..\\midis"
 
 def extract_composer(filename):
     return filename.split(',')[0].strip() + ", " + filename.split(',')[1].strip()
@@ -15,4 +15,4 @@ data = {
 }
 
 df = pl.DataFrame(data)
-df.write_csv("mididata.csv")
+df.write_csv("..\\mididata.csv")

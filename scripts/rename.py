@@ -1,7 +1,7 @@
 import os
 from unidecode import unidecode
 
-directory = "midis"
+directory = "..\\midis"
 
 name = os.listdir(directory)
 newname = list(map(unidecode, name))

@@ -5,7 +5,7 @@ from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 
 fs = FluidSynth("C:\\ProgramData\\soundfonts\\default.sf2")
-df = pl.read_csv("filtered.csv")
+df = pl.read_csv("..\\filtered.csv")
 
 def midi_to_wav_path(midi_path):
     directory, filename = os.path.split(midi_path)

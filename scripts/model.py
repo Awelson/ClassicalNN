@@ -15,27 +15,27 @@ def load_images_from_path(path, label):
 x = []
 y = []
 
-images, labels = load_images_from_path('spectrograms/Bach', 0)
+images, labels = load_images_from_path('../spectrograms/Bach', 0)
     
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Chopin', 1)
+images, labels = load_images_from_path('../spectrograms/Chopin', 1)
 
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Liszt', 2)
+images, labels = load_images_from_path('../spectrograms/Liszt', 2)
 
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Scarlatti', 3)
+images, labels = load_images_from_path('../spectrograms/Scarlatti', 3)
 
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Schubert', 4)
+images, labels = load_images_from_path('../spectrograms/Schubert', 4)
 
 x += images
 y += labels
@@ -74,7 +74,7 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 hist = model.fit(train_features, y_train_encoded, validation_data=(test_features, y_test_encoded), batch_size=8, epochs=7)
 
-model.save('ClassicalNN.keras')
+model.save('../ClassicalNN.keras')
 
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
