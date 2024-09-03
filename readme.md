@@ -48,7 +48,7 @@ The following code renames all of the files in the midi dataset with this `unide
 import os
 from unidecode import unidecode
 
-directory = "midis"
+directory = "..\\midis"
 
 name = os.listdir(directory)
 newname = list(map(unidecode, name))
@@ -67,7 +67,7 @@ The following code creates a csv file with 2 columns, the midi filepath, and the
 import os
 import polars as pl
 
-directory = "midis"
+directory = "..\\midis"
 
 def extract_composer(filename):
     return filename.split(',')[0].strip() + ", " + filename.split(',')[1].strip()
@@ -81,7 +81,7 @@ data = {
 }
 
 df = pl.DataFrame(data)
-df.write_csv("mididata.csv")
+df.write_csv("..\\mididata.csv")
 ```
 
 ## Step 4 (filter.py)
@@ -94,7 +94,7 @@ The following code gives me those 5 composers
 import polars as pl
 from pretty_midi import PrettyMIDI
 
-df = pl.read_csv("mididata.csv")
+df = pl.read_csv("..\\mididata.csv")
 
 composer_counts = df.group_by("composers").agg(
     pl.col("file_paths").count().alias("counts")
@@ -144,7 +144,7 @@ result_df = (
     .group_by('composers').head(80)
 )
 
-result_df.write_csv('filtered.csv')
+result_df.write_csv('..\\filtered.csv')
 ```
 
 ## Step 5 (towav.py)
@@ -167,7 +167,7 @@ from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 
 fs = FluidSynth("file/path/to/soundfont.sf2")
-df = pl.read_csv("filtered.csv")
+df = pl.read_csv("..\\filtered.csv")
 
 def midi_to_wav_path(midi_path):
     directory, filename = os.path.split(midi_path)
@@ -230,11 +230,11 @@ def create_pngs_from_wavs(input_path, output_path):
         output_file = os.path.join(output_path, file.replace('.wav', '.png'))
         create_spectrogram(input_file, output_file)
 
-create_pngs_from_wavs('wavs/Schubert', 'spectrograms/Schubert')
-create_pngs_from_wavs('wavs/Liszt', 'spectrograms/Liszt')
-create_pngs_from_wavs('wavs/Bach', 'spectrograms/Bach')
-create_pngs_from_wavs('wavs/Chopin', 'spectrograms/Chopin')
-create_pngs_from_wavs('wavs/Scarlatti', 'spectrograms/Scarlatti')
+create_pngs_from_wavs('../wavs/Schubert', '../spectrograms/Schubert')
+create_pngs_from_wavs('../wavs/Liszt', '../spectrograms/Liszt')
+create_pngs_from_wavs('../wavs/Bach', '../spectrograms/Bach')
+create_pngs_from_wavs('../wavs/Chopin', '../spectrograms/Chopin')
+create_pngs_from_wavs('../wavs/Scarlatti', '../spectrograms/Scarlatti')
 ```
 
 ## Step 7 (model.py)
@@ -259,27 +259,27 @@ def load_images_from_path(path, label):
 x = []
 y = []
 
-images, labels = load_images_from_path('spectrograms/Bach', 0)
+images, labels = load_images_from_path('../spectrograms/Bach', 0)
     
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Chopin', 1)
+images, labels = load_images_from_path('../spectrograms/Chopin', 1)
 
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Liszt', 2)
+images, labels = load_images_from_path('../spectrograms/Liszt', 2)
 
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Scarlatti', 3)
+images, labels = load_images_from_path('../spectrograms/Scarlatti', 3)
 
 x += images
 y += labels
 
-images, labels = load_images_from_path('spectrograms/Schubert', 4)
+images, labels = load_images_from_path('../spectrograms/Schubert', 4)
 
 x += images
 y += labels
@@ -318,7 +318,7 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 hist = model.fit(train_features, y_train_encoded, validation_data=(test_features, y_test_encoded), batch_size=8, epochs=7)
 
-model.save('ClassicalNN.keras')
+model.save('../ClassicalNN.keras')
 
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
